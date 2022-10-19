@@ -1,0 +1,65 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+//    buildToolsVersion config.build_tool_version
+
+    dataBinding {
+        enabled = true
+    }
+
+    defaultConfig {
+        applicationId "com.example.demo"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "2.0.4"
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'bying'
+            keyPassword '4318471pk'
+            storeFile file('E:\\AndroidProject\\ppav365\\release.keystore')
+            storePassword '4318471pk'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    // 配置一个路径专门存放kotlin文件
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.0"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.0'
+    implementation 'com.romandanylyk:pageindicatorview:1.0.1'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+//    implementation deps.panelSwitchHelper_androidx
+    implementation 'com.github.DSAppTeam:PanelSwitchHelper:v1.5.2'
+//    implementation 'com.github.DSAppTeam:PanelSwitchHelper:v1.5.1'
+//    implementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+}
